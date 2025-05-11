@@ -57,10 +57,7 @@ class _SignInState extends State<SignIn> {
             children: [
               Stack(
                 children: [
-                  SizedBox(
-                    height: 900,
-                    child: Image.network(Images.img1, fit: BoxFit.cover),
-                  ),
+               Image.network(Images.img1, fit: BoxFit.cover),
                   Positioned(
                     top: 111,
                     left: 28,

@@ -12,7 +12,6 @@ class SkipPage extends StatefulWidget {
 }
 
 class _SkipPageState extends State<SkipPage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,47 +24,59 @@ class _SkipPageState extends State<SkipPage> {
                 children: [
                   SizedBox(
                     height: 852,
-                    child: Image.network(
-                      Images.img1,
-                      fit: BoxFit.cover,
+                    child: Image.network(Images.img1, fit: BoxFit.cover),
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 73, right: 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "skip",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15,
+                              color: Color(0xFF9B9EA1),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 28,
+                            color: Color(0xFF9B9EA1),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                 Align(
-                  alignment: Alignment.topRight,
-                   child: Container(
-                    margin: EdgeInsets.only(top: 73,right: 3),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text("skip", style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15,color: Color(0xFF9B9EA1)),),
-                        Icon(Icons.arrow_forward_ios, size: 28,color: Color(0xFF9B9EA1),)
-                        
-                        
-                      ],
+
+                  Positioned(
+                    top: 564,
+                    left: 20,
+                    child: RichText(
+                      text: TextSpan(
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 30,
+                          color: Color(0xFFFFFFFF),
+                          height: 1.2,
+                        ),
+                        children: [
+                          TextSpan(text: "swipe up to start\n"),
+                          TextSpan(
+                            text: "your journey",
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 32,
+                              color: Color(0xFFC1232C),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                   ),
-                 ),
-
-                 Positioned(
-                    top:564 ,left: 20,
-                    child: RichText(text: TextSpan(
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 30, color: Color(0xFFFFFFFF),height: 1.2
-                    
-                    ),
-                    children: [
-                      TextSpan(text: "swipe up to start\n"),
-                      TextSpan(text: "your journey",style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 32,color: Color(0xFFC1232C))),
-                      
-                     
-                    ]
-                    
-                                      )
-                                      )),
-
-                  
-
-                 
+                  ),
                 ],
               ),
             ],
