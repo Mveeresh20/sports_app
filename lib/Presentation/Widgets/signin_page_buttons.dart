@@ -19,7 +19,7 @@ class SigninPageButtons extends StatelessWidget {
     return Container(
       width: 353,
       
-      height: 50,
+      height: 45,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFFF23943), Color(0xFFC1232C)],

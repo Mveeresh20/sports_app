@@ -28,7 +28,7 @@ class SkipButoon extends StatelessWidget {
       
       width: 353,
       
-      height: 50,
+      height: 45,
       
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

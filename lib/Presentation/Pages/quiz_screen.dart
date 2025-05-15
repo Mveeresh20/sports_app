@@ -1,6 +1,3 @@
-
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -77,7 +74,7 @@ class _QuizScreenState extends State<QuizScreen> {
         final int incorrect = summary['incorrectAnswers'] ?? 0;
         final int skipped =
             (summary['totalQuestions'] ?? 0) - correct - incorrect;
-        if (percentage > 30) {
+        if (percentage >= 40) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -122,7 +119,7 @@ class _QuizScreenState extends State<QuizScreen> {
       final int incorrect = summary['incorrectAnswers'] ?? 0;
       final int skipped =
           (summary['totalQuestions'] ?? 0) - correct - incorrect;
-      if (percentage > 30) {
+      if (percentage >= 40) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(

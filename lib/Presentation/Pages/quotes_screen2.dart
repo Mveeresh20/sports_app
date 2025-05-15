@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sports_app/Presentation/Pages/add_quote_screen.dart';
 import 'package:sports_app/Presentation/Pages/questions_level_screen.dart';
+import 'package:sports_app/Presentation/Pages/quotes_screen.dart';
 import 'package:sports_app/Presentation/Pages/select_sports.dart';
 import 'package:sports_app/Presentation/Widgets/signin_page_buttons.dart';
 import 'package:sports_app/Presentation/Widgets/start_quiz_button.dart';
@@ -127,9 +129,7 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
               onpressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) =>SelectSports(),
-                  ),
+                  MaterialPageRoute(builder: (context) => SelectSports()),
                 );
               },
             ),
@@ -142,7 +142,12 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
         shape: CircleBorder(),
         elevation: 0,
         clipBehavior: Clip.antiAlias,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddQuoteScreen()),
+          );
+        },
         child: Icon(Icons.add, color: Colors.red),
       ),
 
@@ -167,7 +172,35 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
               children: <Widget>[
                 GestureDetector(
                   // Wrap with a GestureDetector
-                  onTap: () => _onItemTapped(0), // Move onTap here
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => QuotesScreen()),
+                    );
+                  }, // Move onTap here
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        // Add Icon here
+                        Icons.format_quote_sharp,
+                        color:
+                            _selectedIndex == 0
+                                ? Colors.grey
+                                : Colors.redAccent,
+                      ),
+                      Text(
+                        "Quotes",
+                        style: TextStyle(color: Color(0xFF7B8A99)),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(width: 48.0),
+                GestureDetector(
+                  onTap: () => _onItemTapped(0),
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -180,40 +213,20 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          // Add Icon here
-                          Icons.format_quote_sharp,
-                          color:
-                              _selectedIndex == 0
-                                  ? Colors.redAccent
-                                  : Colors.grey,
+                        Image.network(Images.img12, height: 28, width: 28),
+                        SizedBox(height: 3),
+
+                        Text(
+                          "Quiz",
+                          style: TextStyle(
+                            color:
+                                _selectedIndex == 1
+                                    ? Colors.grey
+                                    : Colors.redAccent,
+                          ),
                         ),
-                        Text("Quotes", style: TextStyle(color: Colors.red)),
                       ],
                     ),
-                  ),
-                ),
-
-                SizedBox(width: 48.0),
-                GestureDetector(
-                  onTap: () => _onItemTapped(0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.network(Images.img12, height: 28, width: 28),
-                      SizedBox(height: 3),
-
-                      Text(
-                        "Quiz",
-                        style: TextStyle(
-                          color:
-                              _selectedIndex == 1
-                                  ? Colors.redAccent
-                                  : Colors.grey,
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sports_app/Presentation/Pages/questions_level_screen.dart';
 import 'package:sports_app/Presentation/Pages/quotes_screen2.dart';
 import 'package:sports_app/Presentation/Widgets/signin_page_buttons.dart';
 import 'package:sports_app/Presentation/Widgets/skip_butoon.dart';
@@ -31,6 +32,7 @@ class _ScorePassState extends State<ScorePass> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -86,9 +88,9 @@ class _ScorePassState extends State<ScorePass> {
                 ),
               ),
             ),
-            SizedBox(height: 35),
-            Center(child: Image.network(Images.img20)),
-            SizedBox(height: 48),
+            SizedBox(height: 25),
+            Center(child: Image.network(Images.img20,height: 200,)),
+            SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 46),
               child: Row(
@@ -153,7 +155,7 @@ class _ScorePassState extends State<ScorePass> {
 
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 50,
+                              horizontal: 35,
                               vertical: 12,
                             ),
                             child: Text(
@@ -258,7 +260,7 @@ class _ScorePassState extends State<ScorePass> {
                 ],
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 35),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: SigninPageButtons(
@@ -274,7 +276,12 @@ class _ScorePassState extends State<ScorePass> {
             SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: SkipButoon(buttonText: "Retake", onpressed: () {}),
+              child: SkipButoon(buttonText: "Retake", onpressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => QuestionsLevelScreen()),
+                  );
+              }),
             ),
           ],
         ),
