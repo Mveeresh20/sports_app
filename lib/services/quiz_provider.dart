@@ -22,7 +22,7 @@ class QuizProvider extends ChangeNotifier {
           : null;
   Map<int, String> get userAnswers => _userAnswers;
 
-  // Load questions by difficulty
+  
   Future<void> loadQuestions(String difficulty) async {
     try {
       _isLoading = true;

@@ -16,7 +16,7 @@ class Onboarding2 extends StatefulWidget {
 class _Onboarding2State extends State<Onboarding2> {
   final int _numPages = 3;
 
-  // Hardcode current page as 1 since this is Onboarding screen 2
+ 
   final int _currentPage = 1;
 
   Widget _buildPageIndicator() {

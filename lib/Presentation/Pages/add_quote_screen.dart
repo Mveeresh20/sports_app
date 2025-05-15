@@ -71,7 +71,7 @@ class _AddQuoteScreenState extends State<AddQuoteScreen> {
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
-        _selectedCoverTheme = null; // If image is picked, clear cover
+        _selectedCoverTheme = null; 
       });
     }
   }
@@ -79,7 +79,7 @@ class _AddQuoteScreenState extends State<AddQuoteScreen> {
   void _selectCover(String id) {
     setState(() {
       _selectedCoverTheme = id;
-      _imageFile = null; // If cover is picked, clear image
+      _imageFile = null; 
     });
   }
 
@@ -109,7 +109,7 @@ class _AddQuoteScreenState extends State<AddQuoteScreen> {
       coverTheme: _selectedCoverTheme,
     );
 
-    // Reset all after adding
+    
     setState(() {
       _imageFile = null;
       _selectedCoverTheme = null;
@@ -117,7 +117,7 @@ class _AddQuoteScreenState extends State<AddQuoteScreen> {
       _quoteController.clear();
     });
 
-    // Show the dialog
+    
     showQuotePostedDialog(context);
   }
 
@@ -167,7 +167,7 @@ class _AddQuoteScreenState extends State<AddQuoteScreen> {
                           bottom: BorderSide(
                             color: Color(0xFF27313B),
                             width: 1,
-                          ), // Only bottom border with 1px width
+                          ), 
                         ),
                       ),
                     ),
@@ -191,7 +191,7 @@ class _AddQuoteScreenState extends State<AddQuoteScreen> {
                         decoration: BoxDecoration(
                           color: const Color(
                             0xFF1E2730,
-                          ).withAlpha(128), // Container background
+                          ).withAlpha(128), 
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                             color: Color(0xFF1E2730), // Border color
@@ -203,7 +203,7 @@ class _AddQuoteScreenState extends State<AddQuoteScreen> {
                           cursorColor: Colors.white, // Cursor color
 
                           maxLines:
-                              null, // Allow multiple lines (wraps automatically)
+                              null, 
                           keyboardType: TextInputType.multiline,
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(

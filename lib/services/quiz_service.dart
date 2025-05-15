@@ -21,7 +21,7 @@ class QuizService {
               ],
               "answer": "Sachin Tendulkar",
             },
-            // Add more easy questions...
+            
           },
           "medium": {
             "q1": {
@@ -43,7 +43,7 @@ class QuizService {
               ],
               "answer": "Rohit Sharma",
             },
-            // Add more hard questions...
+            
           },
         },
       };
@@ -54,17 +54,17 @@ class QuizService {
     }
   }
 
-  // Upload quiz questions from JSON string
+  
   Future<void> uploadQuizQuestions(String jsonData) async {
     try {
       final Map<String, dynamic> data = json.decode(jsonData);
 
-      // Structure the data properly
+      
       final Map<String, dynamic> formattedData = {
         "quiz_questions": {"easy": {}, "medium": {}, "hard": {}},
       };
 
-      // Format each difficulty level
+      
       ['easy', 'medium', 'hard'].forEach((difficulty) {
         if (data[difficulty] != null) {
           final questions = data[difficulty] as List;

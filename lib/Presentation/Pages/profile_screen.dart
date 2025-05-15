@@ -80,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 bottom: BorderSide(
                   color: Color(0xFF27313B),
                   width: 1,
-                ), // Only bottom border with 1px width
+                ),
               ),
             ),
           ),
@@ -156,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         bottom: BorderSide(
                           color: Color(0xFF1E2730),
                           width: 1,
-                        ), // Only bottom border with 1px width
+                        ), 
                       ),
                     ),
                   ),
@@ -172,14 +172,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               colors: [Color(0xFFF23943), Color(0xFFC1232C)],
             ),
             onClick: () async {
-              // Use push and wait for the result
+             
               final updated = await Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => EditProfileScreen()),
               );
-              // You can optionally do something if the profile was updated
+            
               if (updated == true) {
-                // Optionally reload data or show a confirmation message
+               
                 print("Profile updated!");
               }
             },

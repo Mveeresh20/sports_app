@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-// 1. ProfileDetails Model Class
+
 class ProfileDetails {
   String? firstName;
   String? lastName;
@@ -16,7 +16,7 @@ class ProfileDetails {
     this.imageProfile,
   });
 
-  // Named constructor for creating an instance from a map (JSON)
+ 
   ProfileDetails.fromMap(Map<String, dynamic> map) {
     firstName = map['firstName'];
     lastName = map['lastName'];
@@ -25,7 +25,7 @@ class ProfileDetails {
     imageProfile = map['imageProfile'];
   }
 
-  // Method to convert the object to a map (JSON)
+ 
   Map<String, dynamic> toMap() {
     return {
       'firstName': firstName,

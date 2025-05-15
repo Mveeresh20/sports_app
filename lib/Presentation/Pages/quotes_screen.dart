@@ -38,7 +38,7 @@ class _QuotesScreenState extends State<QuotesScreen> {
               .toList();
     }
 
-    // Add guard to ensure we have at least 2 quotes for the locked items
+   
     if (_filteredQuotes.length < 2) {
       _filteredQuotes = adminQuotes;
     }

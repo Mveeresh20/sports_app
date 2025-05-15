@@ -416,7 +416,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SportsCategoryView(
                 onCategorySelected: (category) {
-                  // You can set a variable or call setState here
+                 
                 },
                 selectedCategory: null,
               ),
@@ -469,7 +469,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => QuotesScreen(category: ''),
-                      ), // Added required category parameter
+                      ), 
                     );
                   }, // Move onTap here
                   child: Container(

@@ -61,36 +61,7 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
-  // void _handleNextQuestion() {
-  //   if (_selectedAnswerIndex != -1) {
-  //     setState(() {
-  //       if (_currentQuestion < _totalQuestions) {
-  //         _currentQuestion++;
-  //         _selectedAnswerIndex = -1;
-  //         _questionText = "Q$_currentQuestion. New Question?";
-  //         _answers = ["A", "B", "C", "D", "E"];
-  //         _timeLeft = 235;
-  //         _startTimer();
-  //       } else {
-  //         _timer?.cancel();
-  //         print('Quiz Finished');
-  //       }
-  //     });
-  //   }
-  // }
-
-  // void _handleSkipQuestion() {
-  //   setState(() {
-  //     if (_currentQuestion < _totalQuestions) {
-  //       _currentQuestion++;
-  //       _selectedAnswerIndex = -1;
-  //       _questionText = "Q$_currentQuestion. Skipped Question?";
-  //       _answers = ["1", "2", "3", "4", "5"];
-  //       _timeLeft = 235;
-  //       _startTimer();
-  //     }
-  //   });
-  // }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +105,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   bottom: BorderSide(
                     color: Color(0xFF27313B),
                     width: 1,
-                  ), // Only bottom border with 1px width
+                  ), 
                 ),
               ),
             ),
@@ -187,7 +158,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                         ? [
                                           Color(0xFFFC5000),
                                           Color(0xFF9F0FF7),
-                                        ] // Two different colors when active
+                                        ] 
                                         : [
                                           Color(0xFFD9D9D9),
                                           Color(0xFFD9D9D9),
@@ -244,7 +215,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           _selectedAnswerIndex == index
                               ? Color(
                                 0xFFFD3741,
-                              ) // Light red background on selected
+                              ) 
                               : Colors.transparent,
                     ),
                     child: Padding(
@@ -333,10 +304,10 @@ class _QuizScreenState extends State<QuizScreen> {
                       MaterialPageRoute(
                         builder:
                             (context) => ScorePass(
-                              correct: 7, // Example static value
-                              incorrect: 2, // Example static value
-                              skipped: 1, // Example static value
-                              percentage: 80.0, // Example static value
+                              correct: 7, 
+                              incorrect: 2, 
+                              skipped: 1, 
+                              percentage: 80.0, 
                             ),
                       ),
                     );

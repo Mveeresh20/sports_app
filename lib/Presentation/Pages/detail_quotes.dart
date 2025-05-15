@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sports_app/Presentation/Pages/quotes_screen.dart'; // Fixed import path
+import 'package:sports_app/Presentation/Pages/quotes_screen.dart'; 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:sports_app/Utils/Constants/images.dart';
@@ -40,7 +40,7 @@ class _DetailQuotesState extends State<DetailQuotes> {
       if (snapshot.exists) {
         final data = snapshot.value as Map<dynamic, dynamic>;
 
-        // Check if this quote is already saved
+       
         final matches = data.values.where(
           (value) =>
               value is Map &&
@@ -70,7 +70,7 @@ class _DetailQuotesState extends State<DetailQuotes> {
 
     try {
       if (_isSaved) {
-        // Find and delete the saved quote
+       
         final ref = FirebaseDatabase.instance
             .ref()
             .child('w02_users')
@@ -81,7 +81,7 @@ class _DetailQuotesState extends State<DetailQuotes> {
         if (snapshot.exists) {
           final data = snapshot.value as Map<dynamic, dynamic>;
 
-          // Find the key of the matching quote
+         
           String? matchingKey;
           data.forEach((key, value) {
             if (value is Map &&
@@ -100,7 +100,7 @@ class _DetailQuotesState extends State<DetailQuotes> {
           }
         }
       } else {
-        // Save the quote
+      
         final newKey =
             FirebaseDatabase.instance
                 .ref()
@@ -607,7 +607,7 @@ void showAlarmSetConfirmation(BuildContext context) {
                     // Owl image
                     Image.network(
                       Images
-                          .img22, // Make sure Images.img22 is a valid URL or use Image.asset if it's a local asset
+                          .img22, 
                       height: 100,
                       width: 100,
                       fit: BoxFit.contain,

@@ -50,7 +50,7 @@ class _QuotesPreferenceState extends State<QuotesPreference> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Header with back and skip buttons
+                   
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 16,
@@ -233,7 +233,7 @@ class _QuotesPreferenceState extends State<QuotesPreference> {
                       ),
                     ),
 
-                    // Minimum space to ensure content doesn't get hidden behind button
+                  
                     SizedBox(height: screenSize.height * 0.1),
                   ],
                 ),

@@ -67,7 +67,7 @@ class _ProgressState extends State<Progress> {
                   bottom: BorderSide(
                     color: Color(0xFF27313B),
                     width: 1,
-                  ), // Only bottom border with 1px width
+                  ), 
                 ),
               ),
             ),

@@ -39,7 +39,7 @@ class _QuizScreenState extends State<QuizScreen> {
         });
       } else {
         _timer?.cancel();
-        // Optionally auto-skip or auto-next
+        
       }
     });
   }
@@ -54,7 +54,7 @@ class _QuizScreenState extends State<QuizScreen> {
     setState(() {
       _selectedAnswerIndex = index;
     });
-    // Optionally: provider.answerQuestion(provider.currentQuestion.options[index]);
+    
   }
 
   void _handleNext(QuizProvider provider) {

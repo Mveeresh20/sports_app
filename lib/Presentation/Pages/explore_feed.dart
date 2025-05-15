@@ -85,7 +85,7 @@ class _ExploreFeedState extends State<ExploreFeed> {
                   bottom: BorderSide(
                     color: Color(0xFF27313B),
                     width: 1,
-                  ), // Only bottom border with 1px width
+                  ), 
                 ),
               ),
               child: Padding(
@@ -409,7 +409,6 @@ class _ExploreFeedState extends State<ExploreFeed> {
   void _showCategoryFilter(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent, // To allow for shadow
       isScrollControlled: false,
       builder: (context) {
         return Container(

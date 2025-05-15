@@ -45,7 +45,7 @@ void main() async {
         ),
         ChangeNotifierProvider<QuotesProvider>(create: (_) => QuotesProvider()),
         ChangeNotifierProvider(create: (_) => QuizProvider()),
-        // Add other providers if you have them
+        
       ],
       child: const MyApp(),
     ),

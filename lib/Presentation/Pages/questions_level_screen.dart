@@ -78,7 +78,7 @@ class _QuestionsLevelScreenState extends State<QuestionsLevelScreen> {
               ),
             ),
             SizedBox(height: 16),
-            // LevelsButton UI
+            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: LevelsButton(onLevelSelected: onLevelSelected),

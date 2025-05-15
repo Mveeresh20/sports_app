@@ -92,7 +92,7 @@ class QuizResultScreen extends StatelessWidget {
                       fontFamily: "Plus Jakarta Sans",
                     ),
                   ),
-                  SizedBox(width: 40), // Balance the back button
+                  SizedBox(width: 40),
                 ],
               ),
             ),
@@ -175,7 +175,7 @@ class QuizResultScreen extends StatelessWidget {
 
             Spacer(),
 
-            // Try Another Quiz Button
+            
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Container(

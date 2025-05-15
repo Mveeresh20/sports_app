@@ -23,7 +23,7 @@ Future<CompressImageParams> compressImageInIsolate(
     final compressedImage =
         img.encodeJpg(image!, quality: 40); // Adjust quality as needed
 
-    // Save the compressed image to a temporary directory
+   
 
     final compressedFile = File(params.compressedImagePath);
 

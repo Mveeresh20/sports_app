@@ -73,7 +73,7 @@ class _PremiumPurchaseState extends State<PremiumPurchase> {
                         bottom: BorderSide(
                           color: Color(0xFF27313B),
                           width: 1,
-                        ), // Only bottom border with 1px width
+                        ), 
                       ),
                     ),
                   ),
