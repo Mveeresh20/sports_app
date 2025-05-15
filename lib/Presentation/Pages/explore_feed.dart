@@ -3,6 +3,19 @@ import 'package:sports_app/Utils/Constants/images.dart';
 import 'package:sports_app/Utils/Constants/text.dart';
 import 'package:sports_app/models/quote_card.dart';
 
+final List<Map<String, dynamic>> categories = [
+  {'name': 'All', 'emoji': '✨'},
+  {'name': 'Football', 'emoji': '⚽️'},
+  {'name': 'Swimming', 'emoji': '🏊‍♂️'},
+  {'name': 'Golf', 'emoji': '🏌️‍♂️'},
+  {'name': 'Badminton', 'emoji': '🏸'},
+  {'name': 'Cricket', 'emoji': '🏏'},
+  {'name': 'Rugby', 'emoji': '🏉'},
+  {'name': 'Basket Ball', 'emoji': '🏀'},
+  {'name': 'Tennis', 'emoji': '🎾'},
+  {'name': 'Cycling', 'emoji': '🚴‍♂️'},
+];
+
 class ExploreFeed extends StatefulWidget {
   const ExploreFeed({super.key});
 
@@ -47,8 +60,17 @@ class _ExploreFeedState extends State<ExploreFeed> {
     ),
   ];
 
+  String selectedCategory = 'All';
+
   @override
   Widget build(BuildContext context) {
+    final filteredCards =
+        selectedCategory == 'All'
+            ? quoteCards
+            : quoteCards
+                .where((card) => card.category == selectedCategory)
+                .toList();
+
     return Scaffold(
       backgroundColor: const Color(0xFF101922),
       body: SingleChildScrollView(
@@ -108,21 +130,24 @@ class _ExploreFeedState extends State<ExploreFeed> {
                       fontSize: 14,
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(1856),
-                      border: Border.all(color: Colors.white, width: 1),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 6,
-                        vertical: 4,
+                  GestureDetector(
+                    onTap: () => _showCategoryFilter(context),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(1856),
+                        border: Border.all(color: Colors.white, width: 1),
                       ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.swap_vert, color: Color(0xFF7B8A99)),
-                          Icon(Icons.sort, color: Color(0xFF7B8A99)),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 4,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(Icons.swap_vert, color: Color(0xFF7B8A99)),
+                            Icon(Icons.sort, color: Color(0xFF7B8A99)),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -133,10 +158,10 @@ class _ExploreFeedState extends State<ExploreFeed> {
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: quoteCards.length,
+              itemCount: filteredCards.length,
               separatorBuilder: (context, index) => const SizedBox(height: 19),
               itemBuilder: (context, index) {
-                final card = quoteCards[index];
+                final card = filteredCards[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 13),
                   child: Container(
@@ -279,7 +304,7 @@ class _ExploreFeedState extends State<ExploreFeed> {
                                 color:
                                     card.backgroundImageUrl != null
                                         ? Colors.black.withAlpha(150)
-                                        : null, 
+                                        : null,
                                 borderRadius: BorderRadius.circular(10),
                               ),
 
@@ -378,6 +403,179 @@ class _ExploreFeedState extends State<ExploreFeed> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showCategoryFilter(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent, // To allow for shadow
+      isScrollControlled: false,
+      builder: (context) {
+        return Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFF1E2730),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(33),
+              topRight: Radius.circular(33),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withAlpha(77),
+                blurRadius: 14.4,
+                offset: const Offset(0, -4),
+              ),
+            ],
+          ),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 24, top: 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Drag handle and close icon row
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 12,
+                        left: 16,
+                        right: 16,
+                        bottom: 8,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Container(
+                                width: 48,
+                                height: 5,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withAlpha(60),
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                              size: 28,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    // Category list
+                    ...categories.map((cat) {
+                      final isSelected = selectedCategory == cat['name'];
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedCategory = cat['name'];
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Container(
+                            width: 348,
+                            height: 42,
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 7,
+                              horizontal: 0,
+                            ),
+                            padding: const EdgeInsets.only(
+                              left: 14,
+                              right: 16,
+                              top: 8,
+                              bottom: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color:
+                                  isSelected
+                                      ? Colors.white.withOpacity(0.06)
+                                      : Colors.transparent,
+                              borderRadius: BorderRadius.circular(32),
+                              boxShadow: [
+                                // Drop shadow 1
+                                BoxShadow(
+                                  color: const Color(0x66000000), // #00000040
+                                  blurRadius: 7.5,
+                                  offset: const Offset(0, 4),
+                                ),
+                                // Drop shadow 2
+                                BoxShadow(
+                                  color: const Color(0x66000000), // #00000040
+                                  blurRadius: 11.1,
+                                  offset: const Offset(0, 2),
+                                ),
+                                // Inner shadow 1 (simulated)
+                                BoxShadow(
+                                  color: const Color(0x33516A82), // #516A8233
+                                  blurRadius: 10.7,
+                                  offset: const Offset(0, 4),
+                                  spreadRadius: 0,
+                                ),
+                                // Inner shadow 2 (simulated)
+                                BoxShadow(
+                                  color: const Color(0x4D6E87A0), // #6E87A04D
+                                  blurRadius: 0,
+                                  offset: const Offset(0, 1),
+                                  spreadRadius: 0,
+                                ),
+                              ],
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: const Color(0xFF32363A), // #32363A
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  cat['emoji'],
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    color:
+                                        isSelected
+                                            ? Color(0xFFF23943)
+                                            : Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ), // gap between icon and text
+                                Text(
+                                  cat['name'],
+                                  style: TextStyle(
+                                    color:
+                                        isSelected
+                                            ? Color(0xFFF23943)
+                                            : Colors.white,
+                                    fontSize: 16,
+                                    fontWeight:
+                                        isSelected
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

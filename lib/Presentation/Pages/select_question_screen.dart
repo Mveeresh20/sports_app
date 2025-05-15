@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sports_app/Presentation/Pages/add_quote_screen.dart';
+import 'package:sports_app/Presentation/Pages/score_pass.dart';
 import 'dart:async';
 
 import 'package:sports_app/Presentation/Widgets/signin_page_buttons.dart';
@@ -48,11 +50,10 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   String _formatTime(int seconds) {
-  int minutes = seconds ~/ 60;
-  int remainingSeconds = seconds % 60;
-  return '${minutes}min ${remainingSeconds}s';
-}
-
+    int minutes = seconds ~/ 60;
+    int remainingSeconds = seconds % 60;
+    return '${minutes}min ${remainingSeconds}s';
+  }
 
   void _handleAnswerSelection(int index) {
     setState(() {
@@ -301,7 +302,6 @@ class _QuizScreenState extends State<QuizScreen> {
 
                           const SizedBox(width: 12),
 
-                          // 👇 Answer Text
                           Expanded(
                             child: Text(
                               answer,
@@ -325,7 +325,23 @@ class _QuizScreenState extends State<QuizScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SigninPageButtons(buttonText: "Next", onpressed: () {}),
+                SigninPageButtons(
+                  buttonText: "Next",
+                  onpressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => ScorePass(
+                              correct: 7, // Example static value
+                              incorrect: 2, // Example static value
+                              skipped: 1, // Example static value
+                              percentage: 80.0, // Example static value
+                            ),
+                      ),
+                    );
+                  },
+                ),
                 SizedBox(height: 16),
 
                 SkipButoon(buttonText: "Skip", onpressed: () {}),

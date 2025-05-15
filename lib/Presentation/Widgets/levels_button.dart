@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LevelsButton extends StatefulWidget {
-  const LevelsButton({super.key});
+  final void Function(String) onLevelSelected;
+  const LevelsButton({super.key, required this.onLevelSelected});
 
   @override
   State<LevelsButton> createState() => _LevelsButtonState();
@@ -18,9 +19,12 @@ class _LevelsButtonState extends State<LevelsButton> {
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
         boxShadow: [
-          BoxShadow(blurRadius: 12,offset: Offset(0, 4),
-          color: Color(0xFF298EC8).withAlpha(77)
-      )]
+          BoxShadow(
+            blurRadius: 12,
+            offset: Offset(0, 4),
+            color: Color(0xFF298EC8).withAlpha(77),
+          ),
+        ],
       ),
 
       child: Padding(
@@ -56,7 +60,8 @@ class _LevelsButtonState extends State<LevelsButton> {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xFF1E2730),
-        borderRadius: BorderRadius.circular(10)),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
@@ -69,7 +74,6 @@ class _LevelsButtonState extends State<LevelsButton> {
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
-                
               ),
             ),
             Text(
@@ -78,7 +82,7 @@ class _LevelsButtonState extends State<LevelsButton> {
                 fontFamily: "Open Sans",
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
-            color: Color(0xFF7B8A99)
+                color: Color(0xFF7B8A99),
               ),
             ),
           ],
@@ -90,24 +94,26 @@ class _LevelsButtonState extends State<LevelsButton> {
   @override
   Widget build(BuildContext context) {
     return Column(
-  crossAxisAlignment: CrossAxisAlignment.stretch,
-  children: _level.map((sport) {
-    final isSelected = _selectedCategory == sport;
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedCategory = sport;
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: isSelected
-            ? _buildSelectedCategory(sport)
-            : _buildUnselectedCategory(sport),
-      ),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children:
+          _level.map((sport) {
+            final isSelected = _selectedCategory == sport;
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedCategory = sport;
+                });
+                widget.onLevelSelected(sport);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child:
+                    isSelected
+                        ? _buildSelectedCategory(sport)
+                        : _buildUnselectedCategory(sport),
+              ),
+            );
+          }).toList(),
     );
-  }).toList(),
-);
-
   }
 }

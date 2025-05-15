@@ -25,5 +25,22 @@ class Images {
       "https://ik.imagekit.io/sports123/ecaa4c4a8c701f951bd1ffcc88eba474f1877b1d.png?updatedAt=1746700416543";
   static const img13 =
       "https://ik.imagekit.io/sports123/8662abbce4dc558f49882716035cb174cc01c23c.jpg?updatedAt=1746762398930";
-      
+  static const img14 =
+      "https://ik.imagekit.io/sports123/ba7d0dfb58f692da5d5d469b5fac00243446811d.jpg?updatedAt=1747044630352";
+  static const img15 =
+      "https://ik.imagekit.io/sports123/7959cb697c0c86ec6ca631ad2dc3b2ba15e1b5ba.png?updatedAt=1747052818278";
+  static const img16 =
+      "https://ik.imagekit.io/sports123/25edf92098991884994fd6af3b8e444cc5d3f080.png?updatedAt=1747053190191";
+  static const img17 =
+      "https://ik.imagekit.io/sports123/Group%20316.png?updatedAt=1747058935547";
+  static const img18 =
+      "https://ik.imagekit.io/sports123/Group%20(1).png?updatedAt=1747058953936";
+  static const img19 =
+      "https://ik.imagekit.io/sports123/Group%20(2).png?updatedAt=1747058969567";
+  static const img20 =
+      "https://ik.imagekit.io/sports123/Isolation_Mode.png?updatedAt=1747058985549";
+  static const img21 =
+      "https://ik.imagekit.io/sports123/_%C3%83_%C3%83_%C3%83%C2%AE%C3%83%C2%A9_13.png?updatedAt=1747059000750";
+  static const img22 =
+      "https://ik.imagekit.io/sports123/94928da886deae557b119f45eaf4dcf081d9daec.gif?updatedAt=1747281802877";
 }

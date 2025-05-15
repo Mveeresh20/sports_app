@@ -23,4 +23,6 @@ class LoremIpsum {
   static const p12 = "Test your knowledge of top sports tournaments and see how you rank!";
   static const p13 = "300+ questions from 3 major sports, including the most popular tournaments of each sport.";
   static const p14 = "Are You Ready to Take the Challenge?";
+  static const p15 = "Explore all quotes in each sports category";
+  static const p16 = "Test your knowledge on World Cups, legendary players, and memorable matches.";
 }

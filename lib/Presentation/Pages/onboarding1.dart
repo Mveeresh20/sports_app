@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sports_app/Presentation/Pages/onboarding2.dart';
+import 'package:sports_app/Presentation/Pages/skip_page.dart';
 import 'package:sports_app/Utils/Constants/images.dart';
 import 'package:sports_app/Utils/Constants/text.dart';
 import 'package:sports_app/Utils/Constants/ui.dart';
@@ -50,108 +52,111 @@ class _Onboarding1State extends State<Onboarding1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          color: Color(0xFF101922),
-          child: Column(
-            children: [
-              Stack(
+      backgroundColor:Color(0xFF101922), 
+      body: Stack(
+        children: [
+          Image.network(Images.img1, 
+          fit: BoxFit.cover,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,),
+          Padding(
+            padding: const EdgeInsets.only(top: 400,left: 20),
+            child: RichText(
+              text: TextSpan(
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 40,
+                  color: Color(0xFFFFFFFF),
+                  height: 1.2,
+                ),
                 children: [
-                  SizedBox(
-                    height: 852,
-                    child: Image.network(Images.img1, fit: BoxFit.cover),
-                  ),
-                  Positioned(
-                    top: 447,
-                    left: 20,
-                    child: RichText(
-                      text: TextSpan(
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 40,
-                          color: Color(0xFFFFFFFF),
-                          height: 1.2,
-                        ),
-                        children: [
-                          TextSpan(text: "Get Inspired\nto "),
-                          TextSpan(
-                            text: "Win!",
-                            style: GoogleFonts.poppins(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 40,
-                              color: Color(0xFFC1232C),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  Positioned(
-                    left: 20,
-                    top: 620,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width - 20,
-                      child: Text(
-                        LoremIpsum.p1,
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          color: Color(0xFFA5B1BD),
-                          height: 1.43,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 17),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: UI.borderRadius32,
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: Text(
-                                "Skip",
-                                style: TextStyle(color: Color(0xFF727272)),
-                              ),
-                            ),
-                            SizedBox(width: 55),
-                            _buildPageIndicator(),
-                            SizedBox(width: 55),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFFF23943),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: UI.borderRadius32,
-                                ),
-                              ),
-                              onPressed: () {},
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                  TextSpan(text: "Get Inspired\nto "),
+                  TextSpan(
+                    text: "Win!",
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 40,
+                      color: Color(0xFFC1232C),
                     ),
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+
+          SizedBox(height: 50,),
+                      
+          Padding(
+            padding: const EdgeInsets.only(top: 550,left: 20,right: 20),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width - 20,
+              child: Text(
+                LoremIpsum.p1,
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 15,
+                  color: Color(0xFFA5B1BD),
+                  height: 1.43,
+                ),
+              ),
+            ),
+          ),
+                      
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17).copyWith(bottom: 38),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: UI.borderRadius32,
+                      ),
+                    ),
+                    onPressed: () {
+                       Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SkipPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Skip",
+                      style: TextStyle(color: Color(0xFF727272)),
+                    ),
+                  ),
+                  SizedBox(width: 55),
+                  _buildPageIndicator(),
+                  SizedBox(width: 55),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFF23943),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: UI.borderRadius32,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Onboarding2(),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

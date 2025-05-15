@@ -1,6 +1,7 @@
 import 'dart:async' as async;
 
 import 'package:flutter/material.dart';
+import 'package:sports_app/Presentation/Pages/onboarding1.dart';
 import 'package:sports_app/Presentation/Widgets/splash_elevated_button.dart';
 import 'package:sports_app/Utils/Constants/ui.dart';
 
@@ -28,11 +29,21 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Container(
             width: 350,
-            
-           
+
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, ).copyWith(top: 650),
-              child: SplashElevatedButton(buttonText: "Get Started", width: 158, onpressed: (){}),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ).copyWith(top: 650),
+              child: SplashElevatedButton(
+                buttonText: "Get Started",
+                width: 158,
+                onpressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Onboarding1()),
+                  );
+                },
+              ),
             ),
           ),
         ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sports_app/Presentation/Pages/questions_level_screen.dart';
+import 'package:sports_app/Presentation/Pages/select_sports.dart';
 import 'package:sports_app/Presentation/Widgets/signin_page_buttons.dart';
 import 'package:sports_app/Presentation/Widgets/start_quiz_button.dart';
 import 'package:sports_app/Utils/Constants/images.dart';
@@ -12,7 +14,7 @@ class QuotesScreen2 extends StatefulWidget {
 }
 
 class _QuotesScreen2State extends State<QuotesScreen2> {
-   int _selectedIndex = 0;
+  int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -68,46 +70,73 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
               ),
             ),
             SizedBox(height: 19),
-             Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 13),
-               child: ShaderMask(
-                            blendMode: BlendMode.srcIn,
-                            shaderCallback: (Rect bounds) {
-                              return const LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [Color(0xFF9F0FF7), Color(0xFFF03F3F)],
-                              ).createShader(bounds);
-                            },
-                            child: const Text(
-                              LoremIpsum.p12,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 32,
-                                color: Colors.white,
-                              ),
-                            ),
-                            
-                          ),
-                          
-             ),
-             SizedBox(height: 9),
-             Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 13),
-               child: Text(LoremIpsum.p13,style: TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.w500, fontSize: 14,color: Color(0xFF7B8A99)),),
-             ),SizedBox(height: 239),
-             Center(child: Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 27),
-               child: Text("Are You Ready to Take the Challenge?",style: TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.w600, fontSize: 20,color: Colors.white),textAlign: TextAlign.center,),
-             )),
-             SizedBox(height: 29),
-              
-            StartQuizButton(buttonText: "Start the Quiz", onpressed: (){})
-                      
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 13),
+              child: ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (Rect bounds) {
+                  return const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFF9F0FF7), Color(0xFFF03F3F)],
+                  ).createShader(bounds);
+                },
+                child: const Text(
+                  LoremIpsum.p12,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 32,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 9),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 13),
+              child: Text(
+                LoremIpsum.p13,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  color: Color(0xFF7B8A99),
+                ),
+              ),
+            ),
+            SizedBox(height: 239),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 27),
+                child: Text(
+                  "Are You Ready to Take the Challenge?",
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            SizedBox(height: 29),
+
+            StartQuizButton(
+              buttonText: "Start the Quiz",
+              onpressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>SelectSports(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
-       floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF1E2730),
 
         shape: CircleBorder(),
@@ -129,8 +158,7 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
             topLeft: Radius.circular(30.0),
             topRight: Radius.circular(30.0),
           ),
-        
-          
+
           child: BottomAppBar(
             color: Color(0xFF101822),
             shape: CircularNotchedRectangle(),
@@ -165,7 +193,7 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
                     ),
                   ),
                 ),
-        
+
                 SizedBox(width: 48.0),
                 GestureDetector(
                   onTap: () => _onItemTapped(0),
@@ -175,7 +203,7 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
                     children: [
                       Image.network(Images.img12, height: 28, width: 28),
                       SizedBox(height: 3),
-        
+
                       Text(
                         "Quiz",
                         style: TextStyle(
@@ -192,7 +220,7 @@ class _QuotesScreen2State extends State<QuotesScreen2> {
             ),
           ),
         ),
-      )
+      ),
     );
   }
 }

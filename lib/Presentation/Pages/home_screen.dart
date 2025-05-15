@@ -1,11 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:provider/provider.dart';
+import 'package:sports_app/Presentation/Pages/add_quote_screen.dart';
+import 'package:sports_app/Presentation/Pages/explore_feed.dart';
+import 'package:sports_app/Presentation/Pages/profile_screen.dart';
+import 'package:sports_app/Presentation/Pages/quotes_screen.dart';
+import 'package:sports_app/Presentation/Pages/quotes_screen2.dart';
+import 'package:sports_app/Presentation/Pages/saved_quotes.dart';
+import 'package:sports_app/Presentation/Pages/select_question_screen.dart';
 import 'package:sports_app/Presentation/Views/sports_category_view.dart';
 import 'package:sports_app/Presentation/Widgets/signin_page_buttons.dart';
 import 'package:sports_app/Utils/Constants/images.dart';
 import 'package:sports_app/Utils/Constants/text.dart';
 import 'package:sports_app/Utils/Constants/ui.dart';
+import 'package:sports_app/services/edit_profile_provider.dart';
+import 'package:sports_app/services/image_picker_util.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,6 +26,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () =>
+          Provider.of<EditProfileProvider>(
+            context,
+            listen: false,
+          ).fetchUserProfileDetails(),
+    );
+  }
+
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -26,9 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final editProfileProvider = Provider.of<EditProfileProvider>(context);
+    final userName = editProfileProvider.profileDetails?.firstName ?? "User";
+    final userImage = editProfileProvider.profilePicture;
     return Scaffold(
       backgroundColor: Color(0xFF101922),
-      body: SingleChildScrollView(
+      body:
+      //show quote or quiz
+      SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -42,7 +70,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ClipOval(
-                    child: Image.network(Images.img5, height: 59, width: 59),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ),
+                        );
+                      },
+                      child: SizedBox(
+                        height: 59,
+                        width: 59,
+                        child:
+                            userImage != null && userImage.isNotEmpty
+                                ? CachedNetworkImage(
+                                  imageUrl: ImagePickerUtil()
+                                      .getUrlForUserUploadedImage(userImage),
+                                  fit: BoxFit.cover,
+                                  placeholder:
+                                      (context, url) =>
+                                          CircularProgressIndicator(),
+                                  errorWidget:
+                                      (context, url, error) => Image.asset(
+                                        Images.img5,
+                                        fit: BoxFit.cover,
+                                      ),
+                                )
+                                : Image.asset(
+                                  Images.img5,
+                                  height: 59,
+                                  width: 59,
+                                ),
+                      ),
+                    ),
                   ),
                   SizedBox(width: 15),
                   Column(
@@ -56,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Text(
-                        "Amara Jones",
+                        userName,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
@@ -67,7 +128,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(width: 100),
 
-                  Icon(Icons.bookmark, color: Colors.white, size: 22),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SavedQuotes()),
+                      );
+                    },
+                    child: Icon(Icons.bookmark, color: Colors.white, size: 22),
+                  ),
                 ],
               ),
             ),
@@ -320,7 +389,12 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 23),
               child: SigninPageButtons(
                 buttonText: "Explore Feed",
-                onpressed: () {},
+                onpressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ExploreFeed()),
+                  );
+                },
               ),
             ),
             SizedBox(height: 35),
@@ -340,7 +414,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 18),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SportsCategoryView(),
+              child: SportsCategoryView(
+                onCategorySelected: (category) {
+                  // You can set a variable or call setState here
+                },
+                selectedCategory: null,
+              ),
             ),
           ],
         ),
@@ -351,7 +430,12 @@ class _HomeScreenState extends State<HomeScreen> {
         shape: CircleBorder(),
         elevation: 0,
         clipBehavior: Clip.antiAlias,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddQuoteScreen()),
+          );
+        },
         child: Icon(Icons.add, color: Colors.red),
       ),
 
@@ -372,26 +456,6 @@ class _HomeScreenState extends State<HomeScreen> {
             topRight: Radius.circular(30.0),
           ),
 
-          // decoration: BoxDecoration(
-          //   border: Border(
-          //     top: BorderSide(
-          //       color: Color(0xFF101922),
-          //       width: 1.0,
-          //     ),
-          //   ),
-          //   color: Color(0xFF101922),
-          //   borderRadius: BorderRadius.only(
-          //     topLeft: Radius.circular(30.0),
-          //     topRight: Radius.circular(30.0),
-          //   ),
-          //   boxShadow: [
-          //     BoxShadow(
-
-          //       offset: Offset(0, -5),
-          //       blurRadius: 39,
-          //     ),
-          //   ],
-          // ),
           child: BottomAppBar(
             color: Color(0xFF101822),
             shape: CircularNotchedRectangle(),
@@ -400,7 +464,14 @@ class _HomeScreenState extends State<HomeScreen> {
               children: <Widget>[
                 GestureDetector(
                   // Wrap with a GestureDetector
-                  onTap: () => _onItemTapped(0), // Move onTap here
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QuotesScreen(category: ''),
+                      ), // Added required category parameter
+                    );
+                  }, // Move onTap here
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -429,7 +500,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 SizedBox(width: 48.0),
                 GestureDetector(
-                  onTap: () => _onItemTapped(0),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => QuotesScreen2()),
+                    );
+                  },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
